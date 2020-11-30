@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        display: flex;
+        flex-wrap: wrap;
+        background: grey;
+      }
+      h3 {
+        text-align: center;
+        text-decoration: underline;
+      }
+      p {
+        text-align: center;
+      }
+      div {
+        margin: 5px;
+        width: 350px;
+        border: 1px solid red;
+        border-radius: 8px;
+        padding: 10px;
+        background: silver;
+      }
+      i {
+        color: blue;
+        cursor: pointer;
+      }
+      i:hover {
+        text-decoration: underline;
+      }
+      button {
+        padding: 2px 5px;
+        border-radius: 4px;
+        background: black;
+        color: white;
+        display: block;
+        margin: 5px auto;
+        cursor: pointer;
+        transition: 0.5s all;
+      }
+      button:hover {
+        background: red;
+        color: black;
+      }
+      .input-center {
+        display: block;
+        margin: 0px auto;
+      }
+      .label-input {
+        padding: 2px;
+        margin: 2px 4px;
+      }
+    </style>
+    <title>Assignment 20/11/2020</title>
+  </head>
+  <body>
+    <!-- Question One -->
+    <div>
+      <h3>Question One</h3>
+      <p>Today is: <span id="day"></span><br /></p>
+      <p>Current time is: <span id="time"></span> <br /></p>
+    </div>
+    <!--Question Two-->
+    <div>
+      <h3>Question Two</h3>
+      <p>
+        <i onClick="window.print()">Click here</i> to print contents of the
+        current window.
+      </p>
+    </div>
+    <!--Question Three-->
+    <div>
+      <h3>Question Three</h3>
+      <p><i>Current date is: </i><span id="date"></span></p>
+    </div>
+    <!--Question Four-->
+    <div>
+      <h3>Question Four</h3>
+      <label for="base">Base</label>
+      <input type="number" id="base" name="base" /><br /><br />
+      <label for="height">Height</label>
+      <input type="number" id="height" name="height" /><br /><br />
+      <label for="hypotenuse">Hypotenuse</label>
+      <input type="number" id="hypotenuse" name="hypotenuse" /><br /><br />
+      <button onClick="triangleArea()">Calculate Area</button>
+      <p>The area of the triangle is <span id="area"></span></p>
+    </div>
+
+    <!--Question Five-->
+    <div>
+      <h3>Question Five</h3>
+      <p>
+        Click on the button to reverse the string:
+        <b><span id="w3r">w3resource</span></b>
+      </p>
+      <button onClick="reverseText()">Reverse Text</button>
+    </div>
+    <!-- Question Six -->
+    <div>
+      <h3>Question Six</h3>
+      <p>
+        Is the year
+        <input
+          type="number"
+          min="1900"
+          max="9999"
+          placeholder="yyyy"
+          id="yyyy"
+        />
+        a leap year?
+      </p>
+      <button onClick="leapYear()">Click to Know</button>
+      <p id="leap_yr"></p>
+    </div>
+    <!-- Question Seven -->
+    <div>
+      <h3>Question Seven</h3>
+      <p>
+        Is 1<sup>st</sup> January of&nbsp;
+        <input
+          type="number"
+          min="2014"
+          max="2050"
+          id="sundayYear"
+          placeholder="yyyy"
+        />
+        on a Sunday?
+      </p>
+      <button onClick="isASunday()">Check Result</button>
+      <p id="resultIsASunday"></p>
+    </div>
+    <!-- Question Eight -->
+    <div>
+      <h3>Question Eight</h3>
+      <p>Guess my random number between 1 and 10.</p>
+      <input type="number" min="1" max="10" id="guessed" class="input-center" />
+      <p id="guessResult"></p>
+      <button onClick="findOutGuess()">Find Out</button>
+    </div>
+    <!-- Question Nine -->
+    <div>
+      <h3>Question Nine</h3>
+      <p>We have <span id="xmasCountDown"></span> days to the next Christmas</p>
+    </div>
+    <!-- Question Ten -->
+    <div>
+      <h3>Question Ten</h3>
+      <label for="number_1" class="label-input">1<sup>st</sup> Number:</label>
+      <input
+        type="number"
+        name="number_1"
+        id="number_1"
+        class="label-input"
+      /><br />
+      <label for="number_2" class="label-input">2<sup>nd</sup> Number:</label>
+      <input
+        type="number"
+        name="number_2"
+        id="number_2"
+        class="label-input"
+      /><br />
+      <button onClick="multiply()">Multiply</button>
+      <button onClick="divide()">Divide</button>
+      <p>The result is: <span id="multi_div"></span></p>
+    </div>
+    <!-- Question Eleven -->
+    <div>
+      <h3>Question Eleven</h3>
+      Temperature: <input type="number" id="temp" />
+      <select id="calibration">
+        <option value="celcius">Celcius</option>
+        <option value="farenheit">Farenheit</option>
+      </select>
+      <button onClick="convertTemp()">Convert</button>
+      <p id="tempResult"></p>
+    </div>
+    <!-- Question Twelve -->
+    <div>
+      <h3>Question Twelve</h3>
+      <p>
+        The URL of this page is: <br />
+        <span id="webUrl"></span>
+      </p>
+    </div>
+    <!-- Question Thirteen -->
+    <div>
+      <h3>Question Thirteen</h3>
+    </div>
+    <!-- Question Fourteen -->
+    <div>
+      <h3>Question Fourteen</h3>
+      <p>
+        Upload a file to check its extension:
+        <input
+          type="file"
+          id="uploadFile"
+          name="uploadFile"
+          onChange="getExtension()"
+        />
+      </p>
+      <p>
+        File extension: <input type="text" id="extension" name="extension" />
+      </p>
+    </div>
+    <!-- Question Fifteen -->
+    <div>
+      <h3>Question Fifteen</h3>
+      <p>
+        Please enter a number:
+        <input
+          type="number"
+          name="var_13"
+          id="var_13"
+          onchange="checkThirteen()"
+        />
+      </p>
+      <p id="var_13_result"></p>
+    </div>
+    <!-- Question Sixteen -->
+    <div>
+      <h3>Question Sixteen</h3>
+      <label for="integer_1">1<sup>st</sup> Integer:</label>
+      <input type="number" id="int_1" name="integer_1" /><br />
+      <label for="integer_2">2<sup>nd</sup> Integer:</label>
+      <input type="number" id="int_2" name="integer_2" /><br />
+      <button onclick="getSum()">Sum</button>
+      <p id="getSumResult"></p>
+    </div>
+    <!-- Question Seventeen -->
+    <div>
+      <h3>Question Seventeen</h3>
+      <p>
+        Enter a number:
+        <input type="number" id="var_19" onchange="absoluteDiff()" />
+      </p>
+      <p id="var_19_result"></p>
+    </div>
+    <!-- Question Eighteen -->
+    <div>
+      <h3>Question Eighteen</h3>
+      <p>Checking if either of numbers is 50 or sum is 5019.</p>
+      <p>First Number: <input type="number" id="check50_a" /></p>
+      <p>Second Number: <input type="number" id="check50_b" /></p>
+      <button onclick="checkFifty()">Submit</button>
+      <p id="check50_result"></p>
+    </div>
+    <!-- Question Nineteen -->
+    <div>
+      <h3>Question Nineteen</h3>
+      <p>Check if integer is within 20 of 100 or 400.</p>
+      <p>Integer: <input type="number" id="integer20_100" /></p>
+      <button onclick="integerTwentyOfHundred()">Check</button>
+      <p id="integer20_verdict"></p>
+    </div>
+    <!-- Question Twenty -->
+    <div>
+      <h3>Question Twenty</h3>
+      <p>First Integer: <input type="number" id="positivity" /></p>
+      <p>Second Integer: <input type="number" id="negativity" /></p>
+      <button onclick="checkPositiveAndNegative()">Check Results</button>
+      <p id="positivityResult"></p>
+    </div>
+    <!-- Question Twenty One -->
+    <div>
+      <h3>Question Twenty One</h3>
+      <p>
+        Enter a word:
+        <input type="text" id="givenStr" onchange="createString()" />
+      </p>
+      <p>
+        Created sting is:
+        <span
+          id="createStrResult"
+          style="font-style: italic; color: red"
+        ></span>
+      </p>
+    </div>
+    <!-- Question Twenty Two -->
+    <div>
+      <h3>Question Twenty Two</h3>
+      <p>
+        Type a text below: <br />
+        <input type="text" id="userStr" />
+      </p>
+      <p>
+        Give position of character to be removed: <br />
+        <input type="number" id="userPosn" />
+      </p>
+      <button onclick="removeChar()">Submit</button>
+      <p id="strResult" style="font-style: italic"></p>
+    </div>
+    <!-- Question Twenty Three -->
+    <div>
+      <h3>Question Twenty Three</h3>
+      <p>
+        Please provide a text:
+        <input type="text" id="first_last" onchange="firstLast()" />
+      </p>
+      <p id="fst_lst_result"></p>
+    </div>
+    <!-- Script File -->
+    <script>
+      //Question 1: Display current date and time in given format.
+
+      var today = new Date();
+      var daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      var day = today.getDay();
+      document.getElementById("day").innerHTML = daysOfWeek[day];
+      var hour = today.getHours();
+      var minutes = today.getMinutes();
+      var seconds = today.getSeconds();
+      var time = hour + ":" + minutes + ":" + seconds;
+
+      document.getElementById("time").innerHTML = time;
+
+      // Question 3: Get current date.
+      var date = today.getDate();
+      var month = today.getMonth();
+      var year = today.getFullYear();
+      var currentDate = date + "/" + (month + 1) + "/" + year;
+
+      document.getElementById("date").innerHTML = currentDate;
+
+      //Question 4: Area of a Triangle
+
+      function triangleArea() {
+        var base = Number(document.getElementById("base").value);
+        var height = Number(document.getElementById("height").value);
+        var hypotenuse = Number(document.getElementById("hypotenuse").value);
+        var area = (1 / 2) * base * height;
+        document.getElementById("area").innerHTML = area;
+      }
+
+      // Question 5: Reversing Text
+      function reverseText() {
+        // Get the text from document with id w3r
+        var text = document.getElementById("w3r").innerHTML;
+        // start a loop from last character of string and decrement to first
+        //character adding each character iterated to new string
+        var newText = "";
+        for (var i = text.length - 1; i >= 0; i--) {
+          newText += text[i];
+        }
+        document.getElementById("w3r").innerHTML = newText;
+      }
+      // Question 6: Determine whether given year is a leap year.
+
+      /* Rules of a leap year
+                    1. exactly divisible by 4 except those divisible by 100
+                    2. centurial years divisible by 400
+            */
+
+      function leapYear() {
+        year = Number(document.getElementById("yyyy").value);
+        // ckecking if number provided is 4 digit
+        if (year > 9999 || year < 1000) {
+          alert("Please enter year in format yyyy");
+          // checking conditions of a leap year
+        } else if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+          document.getElementById("leap_yr").innerHTML =
+            "The year " + year + " is a leap year.";
+        } else {
+          document.getElementById("leap_yr").innerHTML =
+            "The year " + year + " is not leap year.";
+        }
+      }
+
+      // Question 7: Checking if 1st of Jan is on a Sunday in a given year between 2014 and 2050
+
+      function isASunday() {
+        var year = Number(document.getElementById("sundayYear").value);
+        var date = new Date("01/01/" + year);
+        if (year < 2014 || year > 2050) {
+          alert("The year should be between 2014 and 2050");
+        } else if (date.getDay() == 0) {
+          document.getElementById("resultIsASunday").innerHTML =
+            "Yaay!! 1<sup>st</sup> January " + year + " is Sunday.";
+        } else {
+          document.getElementById("resultIsASunday").innerHTML =
+            "Ooops... 1<sup>st</sup> January " + year + " is not Sunday.";
+        }
+      }
+
+      //Question 8: Match guessed number with random number generated
+      function findOutGuess() {
+        var userGuess = Number(document.getElementById("guessed").value);
+        var randomGuess = Math.floor(Math.random() * 11);
+        if (userGuess < 1 || userGuess > 10) {
+          alert("Guess a number between 1 and 10.");
+        } else if (userGuess === randomGuess) {
+          document.getElementById("guessResult").innerHTML = "Good Work";
+        } else {
+          document.getElementById("guessResult").innerHTML = "Not Matched";
+        }
+      }
+
+      //Question 9: Countdown to christmas
+      var year = today.getFullYear(); // today had been declared as a global variable.
+      var christmas = new Date("12/25/" + year);
+      var oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * miliseconds
+      document.getElementById("xmasCountDown").innerHTML = Math.round(
+        (christmas - today) / oneDay
+      );
+
+      //Question 10: Multiply or devide two numbers
+
+      function multiply() {
+        var x = Number(document.getElementById("number_1").value);
+        var y = Number(document.getElementById("number_2").value);
+        document.getElementById("multi_div").innerHTML = x * y;
+      }
+      function divide() {
+        var x = Number(document.getElementById("number_1").value);
+        var y = Number(document.getElementById("number_2").value);
+        document.getElementById("multi_div").innerHTML = x / y;
+      }
+
+      //Question 11: Converting Temperature between celcius and farenheits
+
+      function convertTemp() {
+        var x = Number(document.getElementById("temp").value);
+        var cbrn = document.getElementById("calibration").value;
+        if (cbrn === "celcius") {
+          var f = (x / 5) * 9 + 32;
+          document.getElementById("tempResult").innerHTML =
+            x + "&deg;C is " + f + "&deg;F";
+        } else {
+          var c = ((x - 32) / 9) * 5;
+          document.getElementById("tempResult").innerHTML =
+            x + "&deg;F is " + c + "&deg;C";
+        }
+      }
+
+      //Question 12: Get URL of loading page.
+      document.getElementById("webUrl").innerHTML = document.URL;
+
+      //Question 14: Checking file extension
+      function getExtension() {
+        extension.value = uploadFile.value.split(".")[1];
+      }
+
+      //Question 15: Checking a number if absolute diff more than thirteen and returning double the absolute diff
+      function checkThirteen() {
+        var x = Number(document.getElementById("var_13").value);
+        var diff = Math.abs(x - 13);
+        if (x > 13) {
+          document.getElementById("var_13_result").innerHTML =
+            "Double absolute difference " + diff;
+        } else {
+          document.getElementById("var_13_result").innerHTML =
+            "Number is less than or equal to 13";
+        }
+      }
+
+      //Question 16: Get sum of numbers. If same return tripple the sum
+      function getSum() {
+        var int_1 = Number(document.getElementById("int_1").value);
+        var int_2 = Number(document.getElementById("int_2").value);
+        var sum = int_1 + int_2;
+        if (int_1 === int_2) {
+          document.getElementById("getSumResult").innerHTML =
+            "Same numbers therefore tripple sum is: " + sum * 3;
+        } else {
+          document.getElementById("getSumResult").innerHTML =
+            "The Result is: " + sum;
+        }
+      }
+
+      //Question 17: Absolute difference between a number and 19. >19? tripple the absolute difference
+      function absoluteDiff() {
+        var x = Number(document.getElementById("var_19").value);
+        var i = null;
+        if (x > 19) {
+          i = "The tripple absolute difference is " + Math.abs((x - 19) * 3);
+        } else {
+          i = "The absolute difference is " + Math.abs(x - 19);
+        }
+        document.getElementById("var_19_result").innerHTML = i;
+      }
+      //Question 18: Check if one of the number is 50 or their sum is 5019
+      function checkFifty() {
+        var a = Number(document.getElementById("check50_a").value);
+        var b = Number(document.getElementById("check50_b").value);
+        var result = null;
+        if (a === 50 || b === 50 || a + b === 5019) {
+          result = "True";
+        } else {
+          result = "False";
+        }
+        document.getElementById("check50_result").innerHTML = result;
+      }
+      //Question 19: Checking if an integer provided is within 20 of 100 or 400
+      function integerTwentyOfHundred() {
+        var x = Number(document.getElementById("integer20_100").value);
+        var verdict = null;
+        if (x >= 20 / 100 && x <= 400) {
+          verdict = "True";
+        } else {
+          verdict = "False";
+        }
+        document.getElementById("integer20_verdict").innerHTML = verdict; // debug the code. NOT WORKING.
+      }
+
+      //Question 20: Check whether one integer is Positive and the other Negative.
+
+      function checkPositiveAndNegative() {
+        var a = Number(document.getElementById("positivity").value);
+        var b = Number(document.getElementById("negativity").value);
+        var result = null;
+        if ((a < 0 && b > 0) || (a > 0 && b < 0)) {
+          result = "True";
+        } else {
+          result = "False";
+        }
+        document.getElementById("positivityResult").innerHTML = result;
+      }
+
+      //   Question 21: Creating a string by adding Py in front of given string. If it has Py return orifinal string
+      function createString() {
+        var str = String(document.getElementById("givenStr").value);
+        var prefix = str.slice(0, 2).toLowerCase();
+        var newStr = null;
+        if (prefix == "py") {
+          newStr = str;
+        } else {
+          newStr = "Py" + str;
+        }
+        document.getElementById("createStrResult").innerHTML = newStr;
+      }
+
+      // Question 22: Remove character at given point in strring  and return new string
+      function removeChar(str, position) {
+        var str = String(document.getElementById("userStr").value);
+        var position = Number(document.getElementById("userPosn").value) - 1;
+        var newStr = null;
+        var result = null;
+        var msg = "Position given is more than string length.";
+        var msg2 = "Position cannot be equal to or less than zero.";
+        var part1 = str.substring(0, position);
+        var part2 = str.substring(position + 1, str.length);
+        if (position + 1 > str.length) {
+          result = msg;
+        } else if (position < 0) {
+          result = msg2;
+        } else {
+          result = part1 + part2;
+        }
+        document.getElementById("strResult").innerHTML = result;
+      }
+
+      // Question 23: Create new string from given string changing first and last character.
+      function firstLast() {
+        var str = String(document.getElementById("first_last").value);
+        var newStr = null;
+        if (str.length < 2) {
+          newStr = str;
+        } else {
+          newStr =
+            str.substring(str.length - 1) +
+            str.substring(1, str.length - 1) +
+            str.substring(0, 1);
+        }
+        document.getElementById("fst_lst_result").innerHTML = newStr;
+      }
+    </script>
+  </body>
+</html>
